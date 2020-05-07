@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+
+<html>
+   <head>
+         <meta charset="UTF-8">
+         <link rel="stylesheet" href="https://riyasoni5990.github.io/golang-sample-data/sample.css">
+         <!-- The welcome struct (shown in the main.go code) is received within the HTML and we just need to use the . operator and retrieve the 	information we want -->
+         <title>Docker with GO</title>
+   </head>
+   <body>
+     <div class="welcome"><center><b><h1 style ="color:blue;">**Welcome To Docker**</h1></b></center></div>
+     <br><br>
+     <h3 class="welcome"><h2 style ="color:black;">Create Container</h2></h3>
+     <form class="" action="" method="get">
+       <label class="welcome">Image Name: </label><br>
+       <input class="fields" type="text" name="imagename" placeholder="alpine" required><br><br>
+       <label class="welcome">Command: </label><br>
+       <input class="fields" type="text" name="commandtorun" placeholder="ping fb.com"><br><br>
+	<label class="welcome">Container Name: </label><br>
+       <input class="fields" type="text" name="conname" placeholder="democontainer"><br><br>
+       <input style="background-color: grey; font-size: 30px;"type="submit" value="Create"><br><br>
+     </form>
+	
+	<h3 class="welcome"><h2 style ="color:black;">Stop Container</h2></h3>
+     <form class="" action="" method="get">
+       <label class="welcome">Container Name: </label><br>
+       <input class="fields" type="text" name="constopname" placeholder="democontainer" required><br><br>
+       <input style="background-color: grey; font-size: 30px;"type="submit" value="Stop"><br><br>
+     </form>
+
+	<h3 class="welcome"><h2 style ="color:black;">Start Container</h2></h3>
+     <form class="" action="" method="get">
+       <label class="welcome">Container Name: </label><br>
+       <input class="fields" type="text" name="constartname" placeholder="democontainer" required><br><br>
+       <input style="background-color: grey; font-size: 30px;"type="submit" value="Start"><br><br>
+     </form>
+	
+     <div class="welcome"><center><h2 style ="color:black;">--Containers Status--</h2></center></div>
+     <table class="welcome" cellspacing="20" border="1" width="100%">
+       <tr>
+         <th>Container ID</th>
+         <th>Image Name</th>
+         <th>Command</th>
+         <th>Container Name</th>
+         <th>Status</th>
+       </tr>
+       	{{range .}}
+          <tr>
+              <td style="background-color:#000">{{.Imgid}}</td>
+              <td style="background-color:#000">{{.Imgname}}</td>
+              <td style="background-color:#000">{{.Command}}</td>
+              <td style="background-color:#000">{{.Container_Name}}</td>
+              <td style="background-color:#000">{{.Status}}</td>
+          </tr>
+      	{{end}}
+     </table>
+     
+   </body>
+</html>
