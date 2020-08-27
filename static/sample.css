@@ -1,25 +1,30 @@
-body  {
-   min-height:100%;
-   background-image: url("/static/background.png"), linear-gradient(rgba(0,0,0,0.2),rgba(0,0,0,0.3));
-   background-blend-mode: overlay;
-   background-size:cover
+body {
+   background: url(https://i.ibb.co/kSgX9NN/background.jpg) no-repeat center center fixed; 
+   -webkit-background-size: cover;
+   -moz-background-size: cover;
+   -o-background-size: cover;
+   background-size: cover;
+   /* backdrop-filter: blur(7px); */
 }
 
 .welcome {
-   font-family: 'Segoe UI', 'Tahoma', 'Geneva', 'Verdana', 'sans-serif';
-   font-size: 25px;
-   color: aliceblue;
+   text-align: center;
 }
 
-.fields {
-   font-family: 'Segoe UI', 'Tahoma', 'Geneva', 'Verdana', 'sans-serif';
-   font-size: 25px;
-   color: black;
+.mycontainer {
+   margin-bottom: 20px;;
+   padding: 8%;
+   background-color: azure;
+   border: 5px solid lightgray;
+   border-radius: 20px;
 }
 
-.center {
-   height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center
-}​
+.status-heading {
+   margin-top: 30px;
+   padding: 20px;
+}
+
+.containers-list {
+   margin: auto;
+   max-width: 80vw;;
+}

@@ -1,59 +1,111 @@
 <!DOCTYPE html>
 
 <html>
-   <head>
-         <meta charset="UTF-8">
-         <link rel="stylesheet" href="https://riyasoni5990.github.io/golang-sample-data/sample.css">
-         <!-- The welcome struct (shown in the main.go code) is received within the HTML and we just need to use the . operator and retrieve the 	information we want -->
-         <title>Docker with GO</title>
-   </head>
-   <body>
-     <div class="welcome"><center><b><h1 style ="color:blue;">**Welcome To Docker**</h1></b></center></div>
-     <br><br>
-     <h3 class="welcome"><h2 style ="color:black;">Create Container</h2></h3>
-     <form class="" action="" method="get">
-       <label class="welcome">Image Name: </label><br>
-       <input class="fields" type="text" name="imagename" placeholder="alpine" required><br><br>
-       <label class="welcome">Command: </label><br>
-       <input class="fields" type="text" name="commandtorun" placeholder="ping fb.com"><br><br>
-	<label class="welcome">Container Name: </label><br>
-       <input class="fields" type="text" name="conname" placeholder="democontainer"><br><br>
-       <input style="background-color: grey; font-size: 30px;"type="submit" value="Create"><br><br>
-     </form>
-	
-	<h3 class="welcome"><h2 style ="color:black;">Stop Container</h2></h3>
-     <form class="" action="" method="get">
-       <label class="welcome">Container Name: </label><br>
-       <input class="fields" type="text" name="constopname" placeholder="democontainer" required><br><br>
-       <input style="background-color: grey; font-size: 30px;"type="submit" value="Stop"><br><br>
-     </form>
 
-	<h3 class="welcome"><h2 style ="color:black;">Start Container</h2></h3>
-     <form class="" action="" method="get">
-       <label class="welcome">Container Name: </label><br>
-       <input class="fields" type="text" name="constartname" placeholder="democontainer" required><br><br>
-       <input style="background-color: grey; font-size: 30px;"type="submit" value="Start"><br><br>
-     </form>
-	
-     <div class="welcome"><center><h2 style ="color:black;">--Containers Status--</h2></center></div>
-     <table class="welcome" cellspacing="20" border="1" width="100%">
-       <tr>
-         <th>Container ID</th>
-         <th>Image Name</th>
-         <th>Command</th>
-         <th>Container Name</th>
-         <th>Status</th>
-       </tr>
-       	{{range .}}
+<head>
+  <meta charset="UTF-8">
+  <!-- Font Awesome -->
+  <link href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" rel="stylesheet" />
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
+  <!-- MDB -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/1.0.0/mdb.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://riyasoni5990.github.io/golang-sample-data/sample.css">
+  <!-- The welcome struct (shown in the main.go code) is received within the HTML and we just need to use the . operator and retrieve the 	information we want -->
+  <title>Docker with GO</title>
+</head>
+
+<body>
+  <div class="welcome">
+    <h1 class="display-4 text-white pt-5">Welcome To Docker Management Console</h1>
+  </div>
+  <br><br>
+  <div class="container">
+    <div class="row">
+      <div class="col-md">
+        <div class="mycontainer">
+          <h2 class="text-center">Create Container</h2>
+          <form method="get">
+            <div class="form-outline mb-4">
+              <input type="text" name="imagename" id="imagename" class="form-control " required />
+              <label class="form-label" for="imagename">Image Name</label>
+            </div>
+            <div class="form-outline mb-4">
+              <input type="text" name="commandtorun" id="commandtorun" class="form-control" />
+              <label class="form-label" for="commandtorun">Command</label>
+            </div>
+            <div class="form-outline mb-4">
+              <input type="text" name="conname" id="conname" class="form-control" />
+              <label class="form-label" for="conname">Container Name</label>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block mb-4">
+              Create
+            </button>
+          </form>
+        </div>
+      </div>
+      <div class="col-md">
+        <div class="mycontainer">
+          <h2 class="text-center">Start Container</h2>
+          <form method="get">
+            <div class="form-outline mb-4">
+              <input type="text" name="constartname" id="constartname" class="form-control" required />
+              <label class="form-label" for="constartname">Container Name</label>
+            </div>
+            <button type="submit" class="btn btn-success btn-block mb-4">
+              Start
+            </button>
+          </form>
+        </div>
+      </div>
+      <div class="col-md">
+        <div class="mycontainer">
+          <h2 class="text-center">Stop Container</h2>
+          <form method="get">
+            <div class="form-outline mb-4">
+              <input type="text" name="constopname" id="constopname" class="form-control" required />
+              <label class="form-label" for="constopname">Container Name</label>
+            </div>
+            <button type="submit" class="btn btn-danger btn-block mb-4">
+              Stop
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="containers-list">
+    <h2 class="status-heading text-center text-white display-4 bg-dark">Containers Status</h2>
+    <div class="table-responsive">
+      <table class="table table-bordered">
+        <thead class="table-dark">
           <tr>
-              <td style="background-color:#000">{{.Imgid}}</td>
-              <td style="background-color:#000">{{.Imgname}}</td>
-              <td style="background-color:#000">{{.Command}}</td>
-              <td style="background-color:#000">{{.Container_Name}}</td>
-              <td style="background-color:#000">{{.Status}}</td>
+            <th scope="col">Container ID</th>
+            <th scope="col">Image Name</th>
+            <th scope="col">Command</th>
+            <th scope="col">Container Name</th>
+            <th scope="col">Status</th>
           </tr>
-      	{{end}}
-     </table>
-     
-   </body>
+        </thead>
+        <tbody>
+          {{range .}}
+          <tr class="table-light">
+            <td>{{.Imgid}}</td>
+            <td>{{.Imgname}}</td>
+            <td>{{.Command}}</td>
+            <td>{{.Container_Name}}</td>
+            <td>{{.Status}}</td>
+          </tr>
+          {{end}}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</body>
+<!-- MDB -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/1.0.0/mdb.min.js"></script>
+
 </html>
